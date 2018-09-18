@@ -1,3 +1,9 @@
+<% recipe.errors.full_messages.each do |message| %>
+  <div class="alert alert-info" role="alert">
+    <%= message %>
+  </div>
+<% end %>
+
 <%= form_for recipe do |f| %>
   <div class="form-group">
     <%= f.label :title, 'Título' %>
@@ -29,6 +35,10 @@
     <%= f.label :cook_method, 'Como Preparar' %>
     <%= f.text_area :cook_method, class: 'form-control col-md-6' %>
   </div>
+  <div>
+    <%= f.label :photo, 'Foto da Receita' %>
+    <%= f.file_field :photo %>    
+  </div>  
   <div class="form-group">
     <%= f.submit 'Enviar', class: 'btn btn-primary' %>
   </div>
