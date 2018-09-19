@@ -1,0 +1,12 @@
+<% @cuisine.errors.full_messages.each do |message| %>
+  <div class="alert alert-info" role="alert">
+    <%= message %>
+  </div>
+<% end %>
+<%= form_for @cuisine do |f| %>
+  <div class='form-group'>
+    <%= f.label :name, 'Nome' %>
+    <%= f.text_field :name, class: 'form-control col-md-6' %>
+  </div>
+  <%= f.submit 'Enviar' %>
+<% end %>

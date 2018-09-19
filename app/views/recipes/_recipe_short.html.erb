@@ -1,6 +1,6 @@
-<div class="col-md-4">
+<div class="col-md-4 col-sm-12">
   <div class="card mb-4 shadow-sm">
-    <%= image_tag 'https://via.placeholder.com/500x255' %>
+    <%= image_tag recipe.photo.url, class: 'img-fluid' %>
     <div class="card-body">
     <h1 class="h4">
       <%= image_tag 'star.png', class: 'star-image' if recipe.featured? %>
