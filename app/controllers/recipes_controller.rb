@@ -17,6 +17,7 @@ class RecipesController < ApplicationController
 
   def create
     @recipe = Recipe.new(recipe_params)
+    @recipe.user = current_user
     if @recipe.save
       redirect_to @recipe
     else
@@ -28,6 +29,7 @@ class RecipesController < ApplicationController
   end
 
   def edit
+    @recipe.user = current_user
     @recipe_types = RecipeType.all
     @cuisines = Cuisine.all
   end

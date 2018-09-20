@@ -14,9 +14,18 @@ feature 'User register recipe' do
     RecipeType.create(name: 'Sobremesa')
     RecipeType.create(name: 'Entrada')
     Cuisine.create(name: 'Arabe')
+    User.create(email: 'reynaldo@gmail.com', password: '12345678')
 
     # simula a ação do usuário
     visit root_path
+    click_on 'Entrar'
+
+    fill_in "Email", with: "reynaldo@gmail.com"
+    fill_in "Senha", with: "12345678"
+    within '.actions' do
+      click_on 'Entrar'
+    end
+    
     click_on 'Enviar uma receita'
 
     fill_in 'Título', with: 'Tabule'

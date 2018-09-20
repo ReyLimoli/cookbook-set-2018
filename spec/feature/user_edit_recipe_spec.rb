@@ -2,20 +2,31 @@ require 'rails_helper'
 
 feature 'User update recipe' do
   scenario 'view edit button' do
+    user = User.create(email: 'reynaldo@gmail.com', password: '12345678')
     recipe_type = RecipeType.create(name: 'Sobremesa')
     cuisine = Cuisine.create(name: 'Brasileira')
     Recipe.create(title: 'Bolo de cenoura', difficulty: 'Médio',
                   recipe_type: recipe_type, cuisine: cuisine,
                   cook_time: 50, ingredients: 'Farinha, açucar, cenoura',
-                  cook_method: 'Cozinhe a cenoura, corte em pedaços pequenos, misture com o restante dos ingredientes')
-
+                  cook_method: 'Cozinhe a cenoura, corte em pedaços pequenos, misture com o restante dos ingredientes', 
+                  user: user)
+    
     visit root_path
+    click_on 'Entrar'
+
+    fill_in "Email", with: "reynaldo@gmail.com"
+    fill_in "Senha", with: "12345678"
+    within '.actions' do
+      click_on 'Entrar'
+    end
+
     click_on 'Bolo de cenoura'
 
     expect(page).to have_css('a.btn.btn-primary', text: 'Editar')
   end
 
   scenario 'successfully' do
+    user = User.create(email: 'reynaldo@gmail.com', password: '12345678')
     recipe_type = RecipeType.create(name: 'Sobremesa')
     RecipeType.create(name: 'Entrada')
     cuisine = Cuisine.create(name: 'Brasileira')
@@ -23,10 +34,19 @@ feature 'User update recipe' do
     Recipe.create(title: 'Bolodecenoura', difficulty: 'Médio',
                   recipe_type: recipe_type, cuisine: cuisine,
                   cook_time: 50, ingredients: 'Farinha, açucar, cenoura',
-                  cook_method: 'Cozinhe a cenoura, corte em pedaços pequenos, misture com o restante dos ingredientes')
+                  cook_method: 'Cozinhe a cenoura, corte em pedaços pequenos, misture com o restante dos ingredientes', 
+                  user: user)
 
     # simula a ação do usuário
     visit root_path
+    click_on 'Entrar'
+
+    fill_in "Email", with: "reynaldo@gmail.com"
+    fill_in "Senha", with: "12345678"
+    within '.actions' do
+      click_on 'Entrar'
+    end
+
     click_on 'Bolodecenoura'
     click_on 'Editar'
 
@@ -51,15 +71,25 @@ feature 'User update recipe' do
   end
 
   scenario 'and must fill in all fields' do
+    user = User.create(email: 'reynaldo@gmail.com', password: '12345678')
     recipe_type = RecipeType.create(name: 'Sobremesa')
     cuisine = Cuisine.create(name: 'Brasileira')
     Recipe.create(title: 'Bolodecenoura', difficulty: 'Médio',
                   recipe_type: recipe_type, cuisine: cuisine,
                   cook_time: 50, ingredients: 'Farinha, açucar, cenoura',
-                  cook_method: 'Cozinhe a cenoura, corte em pedaços pequenos, misture com o restante dos ingredientes')
+                  cook_method: 'Cozinhe a cenoura, corte em pedaços pequenos, misture com o restante dos ingredientes', 
+                  user: user)
 
     # simula a ação do usuário
     visit root_path
+    click_on 'Entrar'
+
+    fill_in "Email", with: "reynaldo@gmail.com"
+    fill_in "Senha", with: "12345678"
+    within '.actions' do
+      click_on 'Entrar'
+    end
+
     click_on 'Bolodecenoura'
     click_on 'Editar'
 
